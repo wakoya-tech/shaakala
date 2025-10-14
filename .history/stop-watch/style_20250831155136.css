@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato',sans-serif;
+
+
+}
+body {
+    height: 100vh;
+    background: url(../img/img4.jpg)no-repeat center center/cover;
+}

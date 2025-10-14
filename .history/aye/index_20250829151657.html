@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Dom Manipulation</title>
+</head>
+<style>
+    body{
+        background-color: lightslategrey;
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
+.container{
+    /*border: 1px solid white ;
+    margin: 30px 100px 100px 100px;
+    padding: 10px;*/
+    margin-top: 10px;
+   /* text-align: center;
+    align-items: center;*/
+    display: flex;
+    grid-template-columns: auto;
+
+}
+.reveal-btn.boxes{
+    text-align: center;
+    align-items: 100px;
+    padding: 100px;
+    padding-left: 100px;
+}
+.hidden-content.boxes{
+
+  
+    
+}
+#main-heading{
+    align-items: center;
+    text-align: center;
+    
+}
+.boxes{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   /* align-items: center;
+    text-align: center;*/
+    border: 1px solid white ;
+    margin: 30px 10px 10px 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+button {
+    color: white;
+padding: 10%;
+padding-left: 350px;
+padding-right: 250px;
+margin-left: 40px;
+    background-color: lightslategray;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+
+    
+}
+.hidden-content {
+    display: none;
+}
+.hidden-content.reveal-btn {
+    display: block;
+}
+
+
+</style>
+<body>
+    <h1 id="main-heading">Event Listeners</h1>
+    <div class="container">
+        <button class="reveal-btn boxes">reveal More</button>
+        <div class="hidden-content boxes">
+            Lorem ipsum dolor sit amet consectetur adipisicing 
+            elit. Fugiat officia deleniti, ipsam ea,
+            veniam fuga facilis quo, recusandae nulla
+            unde ullam! Id et, sapiente fugit rem odit 
+            explicabo at iure illum porro autem ipsa nihil
+            amet, tempore sint nostrum beatae eveniet 
+            ratione ipsum, quae natus 
+            fugiat corporis! Corporis, nulla quaerat.
+        </div>
+    </div>
+    <script src="../aye/script.js"></script>
+</body>
+</html>

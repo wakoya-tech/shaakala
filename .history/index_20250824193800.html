@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Example</title>
+</head>
+<body>
+  <h2>DOM Challenge</h2>
+
+  <input type="text" id="myInput" placeholder="Type something...">
+  <button id="btn">Show Text</button>
+
+  <p id="output"></p>
+
+  <script>
+    // Select elements
+    const input = document.getElementById("myInput");
+    const button = document.getElementById("btn");
+    const output = document.getElementById("output");
+
+    // Add event when button is clicked
+    button.addEventListener("click", function() {
+      let text = input.value;     // take input value
+      output.textContent = text;  // show it inside <p>
+    });
+  </script>
+</body>
+</html>

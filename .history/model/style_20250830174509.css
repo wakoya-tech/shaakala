@@ -1,0 +1,10 @@
+body{
+    background: url(../img/img2.jpg) no-repeat center center/ cover;
+    height: 100vh;
+    position: relative;
+}
+#open-btn {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+}
