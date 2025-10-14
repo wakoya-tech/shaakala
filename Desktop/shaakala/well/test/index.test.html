@@ -1,0 +1,103 @@
+javascript
+import { test, expect } from 'wako';
+
+test('test_user_successfully_adds_new_task', async ({ page }) => {
+  await page.goto('well/index.html');
+  await page.fill('#taskInput', 'Buy milk');
+  await page.click('#addBtn');
+
+  const items = await page.$$eval('#taskList li', els => els.map(e => e.textContent));
+  expect(items).toEqual(['Buy milk']);
+
+  const inputValue = await page.$eval('#taskInput', el => el.value);
+  expect(inputValue).toBe('');
+});
+
+test('test_user_successfully_edits_existing_task', async ({ page }) => {
+  await page.goto('well/index.html');
+  await page.fill('#taskInput', 'Task A');
+  await page.click('#addBtn');
+
+  await page.dblclick('#taskList li');
+
+  const editExists = await page.$('#taskList li input[type="text"]');
+  expect(editExists).not.toBeNull();
+
+  const editValue = await page.$eval('#taskList li input[type="text"]', el => el.value);
+  expect(editValue).toBe('Task A');
+});
+
+test('test_user_saves_edited_task_with_enter', async ({ page }) => {
+  await page.goto('well/index.html');
+  await page.fill('#taskInput', 'Original Task');
+  await page.click('#addBtn');
+
+  await page.dblclick('#taskList li');
+  await page.fill('#taskList li input[type="text"]', 'Edited Task');
+  await page.keyboard.press('Enter');
+
+  const items = await page.$$eval('#taskList li', els => els.map(e => e.textContent));
+  expect(items).toEqual(['Edited Task']);
+
+  const editInput = await page.$('#taskList li input[type="text"]');
+  expect(editInput).toBeNull();
+});
+
+test('test_user_attempts_to_add_empty_task', async ({ page }) => {
+  await page.goto('well/index.html');
+
+  // Attempt with empty string
+  await page.fill('#taskInput', '');
+  await page.click('#addBtn');
+
+  // Attempt with whitespace
+  await page.fill('#taskInput', '   ');
+  await page.click('#addBtn');
+
+  const count = await page.$$eval('#taskList li', els => els.length);
+  expect(count).toBe(0);
+});
+
+test('test_user_double_clicks_task_in_edit_mode', async ({ page }) => {
+  await page.goto('well/index.html');
+  await page.fill('#taskInput', 'Task In Edit');
+  await page.click('#addBtn');
+
+  // Enter edit mode
+  await page.dblclick('#taskList li');
+  await page.fill('#taskList li input[type="text"]', 'Intermediate Edit');
+
+  // Double-click again while already editing
+  await page.dblclick('#taskList li');
+
+  // Ensure only one edit input exists and value resets due to implementation
+  const inputsCount = await page.$$eval('#taskList li input[type="text"]', els => els.length);
+  expect(inputsCount).toBe(1);
+
+  const valueAfterSecondDblClick = await page.$eval('#taskList li input[type="text"]', el => el.value);
+  expect(valueAfterSecondDblClick).toBe('');
+});
+
+test('test_user_abandons_edit_without_saving', async ({ page }) => {
+  await page.goto('well/index.html');
+  await page.fill('#taskInput', 'Abandon Edit Task');
+  await page.click('#addBtn');
+
+  // Enter edit mode and type new value
+  await page.dblclick('#taskList li');
+  await page.fill('#taskList li input[type="text"]', 'Unsaved Edit');
+
+  // Click away (blur) without pressing Enter
+  await page.click('body');
+
+  // Verify the input is still present (edit mode persists) and retains typed value
+  const editExists = await page.$('#taskList li input[type="text"]');
+  expect(editExists).not.toBeNull();
+
+  const currentValue = await page.$eval('#taskList li input[type="text"]', el => el.value);
+  expect(currentValue).toBe('Unsaved Edit');
+
+  // Also verify that the list item hasn't reverted to text
+  const liText = await page.$eval('#taskList li', el => el.textContent);
+  expect(liText).toBe('');
+})

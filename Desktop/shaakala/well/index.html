@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editable Todo List</title>
+</head>
+<body>
+  <h2>Editable Todo List</h2>
+
+  <input type="text" id="taskInput" placeholder="Enter a task">
+  <button id="addBtn">Add Task</button>
+
+  <ul id="taskList"></ul>
+
+  <script>
+    const input = document.getElementById("taskInput");
+    const button = document.getElementById("addBtn");
+    const list = document.getElementById("taskList");
+
+    // Add new task
+    button.addEventListener("click", function() {
+      let task = input.value.trim();
+      if (task === "") return;
+
+      const li = document.createElement("li");
+      li.textContent = task;
+
+      // Edit feature: double click to edit
+      li.addEventListener("dblclick", function() {
+        const editInput = document.createElement("input");
+        editInput.type = "text";
+        editInput.value = li.textContent;
+
+        li.textContent = ""; // clear li
+        li.appendChild(editInput);
+        editInput.focus();
+
+        // Save when pressing Enter
+        editInput.addEventListener("keypress", function(e) {
+          if (e.key === "Enter") {
+            li.textContent = editInput.value;
+          }
+        });
+      });
+
+      // Add to list
+      list.appendChild(li);
+      input.value = "";
+    });
+  </script>
+</body>
+</html>

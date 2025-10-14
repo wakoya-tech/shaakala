@@ -1,0 +1,22 @@
+body{
+    background: url(../img/img2.jpg) no-repeat center center/ cover;
+    height: 100vh;
+    position: relative;
+}
+#open-btn {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 350px;
+    height: 80px;
+    font-size: 2rem;
+    background: transparent;
+    color: #fff;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    padding: 5px ;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    box-shadow: 0 0 3px black;
+    transition: -5s;
+}

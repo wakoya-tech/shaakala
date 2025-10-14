@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM List Challenge</title>
+</head>
+<body>
+  <h2>Todo List</h2>
+
+  <input type="text" id="taskInput" placeholder="Enter a task">
+  <button id="addBtn">Add Task</button>
+
+  <ul id="taskList"></ul>
+
+  <script>
+    const input = document.getElementById("taskInput");
+    const button = document.getElementById("addBtn");
+    const list = document.getElementById("taskList");
+
+    // When button clicked
+    button.addEventListener("click", function() {
+      let task = input.value.trim(); // remove spaces
+
+      if (task === "") return; // ignore empty input
+
+      // Create new li
+      const li = document.createElement("li");
+      li.textContent = task;
+
+      // Create delete button
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "❌";
+      delBtn.style.marginLeft = "10px";
+
+      // Delete functionality
+      delBtn.addEventListener("click", function() {
+        list.removeChild(li);
+      });
+
+      // Append delete button to li
+      li.appendChild(delBtn);
+
+      // Add li to ul
+      list.appendChild(li);
+
+      // Clear input
+      input.value = "";
+    });
+  </script>
+</body>
+</html>

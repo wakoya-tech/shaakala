@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accordion Example</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding-top: 100px;
+    }
+    .accordion {
+      width: 350px;
+    }
+    .content-container {
+      cursor: pointer;
+      overflow: hidden;
+      border: 1px solid white;
+      margin-bottom: 20px;
+      padding: 10px;
+      position: relative;
+    }
+    .question {
+      font-weight: 800;
+      font-size: 16px;
+      position: relative;
+      padding-right: 30px;
+      user-select: none;
+    }
+    .question::after {
+      content: '+';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      transition: 0.3s;
+    }
+    .answer {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.5s ease;
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .content-container.active .answer {
+      height: 150px;
+    }
+    .content-container.active .question {
+      font-size: 18px;
+      transition: 0.5s;
+    }
+    .content-container.active .question::after {
+      content: '-';
+      font-size: 30px;
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="accordion">
+    <div class="content-container">
+      <div class="question">What is your name?</div>
+      <div class="answer">Hello from Alex.</div>
+    </div>
+    <div class="content-container">
+      <div class="question">Where do you live?</div>
+      <div class="answer">I live in Istanbul.</div>
+    </div>
+    <div class="content-container">
+      <div class="question">What sport do you play?</div>
+      <div class="answer">I play football.</div>
+    </div>
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(question => {
+      question.addEventListener('click', () => {
+        question.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
