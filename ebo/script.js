@@ -4,6 +4,7 @@ function alertBtn(){
 };
 buttonTwo.addEventListener("click", alertBtn);
 const newBackground = document.querySelector('.box-3')
+
 function changeBgColor(){
     newBackground.style.backgroundColor = 'blue';
 };
