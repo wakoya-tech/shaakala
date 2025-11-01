@@ -19,8 +19,6 @@
 
       const li = document.createElement("li");
       li.textContent = task;
-
-      // Edit feature: double click to edit
       li.addEventListener("dblclick", function() {
         const editInput = document.createElement("input");
         editInput.type = "text";
