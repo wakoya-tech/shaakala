@@ -13,8 +13,6 @@
     const input = document.getElementById("taskInput");
     const button = document.getElementById("addBtn");
     const list = document.getElementById("taskList");
-
-    // Add new task
     button.addEventListener("click", function() {
       let task = input.value.trim();
       if (task === "") return;
