@@ -16,7 +16,6 @@
     button.addEventListener("click", function() {
       let task = input.value.trim();
       if (task === "") return;
-
       const li = document.createElement("li");
       li.textContent = task;
       li.addEventListener("dblclick", function() {
