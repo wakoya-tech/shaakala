@@ -15,6 +15,7 @@ document.querySelector('.basketball').addEventListener('click',function(e){
         target.style.backgroundColor='lightgrey'
     }
 })
+
 document.querySelector('.boxing').addEventListener('click',function(e){
 console.log('boxing is clicked');
 const target = e.target;
