@@ -1,8 +1,6 @@
 const addTask = document.getElementById('add-task');
 const taskContainer = document.getElementById('task-container');
 const inputTask =document.getElementById('input-task');
-
-
 addTask.addEventListener('click',function(){
     let task = document.createElement('div');
     task.classList.add('task');
